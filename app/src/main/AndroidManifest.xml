@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nrohmen.dicodingacademy">
+
+    <application
+        android:name=".SlicesApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.home.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name=".provider.AcademySliceProvider"
+            android:authorities="com.nrohmen.dicodingacademy.provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.app.slice.category.SLICE" />
+
+                <data
+                    android:host="nrohmen.com"
+                    android:pathPrefix="/"
+                    android:scheme="http" />
+            </intent-filter>
+        </provider>
+
+        <receiver
+            android:name=".receiver.AcademiesBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".ui.detail.AcademyDetailActivity"/>
+    </application>
+
+</manifest>
