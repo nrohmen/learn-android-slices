@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nrohmen.dicodingacademy.R
 import com.nrohmen.dicodingacademy.data.model.Academy
 import com.nrohmen.dicodingacademy.data.repository.AcademyRepository
+import com.nrohmen.dicodingacademy.ui.detail.AcademyDetailActivity
 import com.nrohmen.dicodingacademy.util.getSortedAcademies
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.ctx
+import org.jetbrains.anko.startActivity
 
 class HomeActivity : AppCompatActivity() {
     private var items: MutableList<Academy> = mutableListOf()
@@ -22,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
         initData()
         list.layoutManager = LinearLayoutManager(ctx)
         list.adapter = RecyclerViewAdapter( this, items){
-
+            startActivity<AcademyDetailActivity>(AcademyDetailActivity.EXTRA_ACADEMY to it)
         }
     }
 

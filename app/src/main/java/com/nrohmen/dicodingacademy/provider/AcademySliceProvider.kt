@@ -1,7 +1,6 @@
 package com.nrohmen.dicodingacademy.provider
 
 import android.app.PendingIntent
-import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -12,7 +11,6 @@ import androidx.slice.builders.GridRowBuilder
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.SliceAction
 import com.nrohmen.dicodingacademy.R
-import com.nrohmen.dicodingacademy.SlicesApplication
 import com.nrohmen.dicodingacademy.data.model.Academy
 import com.nrohmen.dicodingacademy.data.repository.AcademyRepository
 import com.nrohmen.dicodingacademy.receiver.AcademiesBroadcastReceiver
@@ -38,10 +36,10 @@ class AcademySliceProvider : SliceProvider() {
         val maxAcademy = 3
         val academyRepo = AcademyRepository()
         val academies: List<Academy> = getSortedAcademies(context, academyRepo).take(maxAcademy)
-        val seeMoreAction = SliceAction(createSeeMoreIntent(),
+        val seeMoreAction = SliceAction.create(createSeeMoreIntent(),
                 IconCompat.createWithResource(context, R.drawable.ic_more),
                 ListBuilder.ICON_IMAGE, "Sort by Price")
-        val sortByPriceAction = SliceAction(createSortByPriceIntent(),
+        val sortByPriceAction = SliceAction.create(createSortByPriceIntent(),
                 IconCompat.createWithResource(context, R.drawable.ic_sort_price),
                 ListBuilder.ICON_IMAGE, "Sort by Price")
 

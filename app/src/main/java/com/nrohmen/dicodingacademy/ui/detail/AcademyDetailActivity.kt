@@ -11,14 +11,20 @@ class AcademyDetailActivity : AppCompatActivity() {
         const val EXTRA_ACADEMY: String = "EXTRA_ACADEMY"
         const val REQUEST_CODE_ACADEMY: Int = 3001
     }
+
     private lateinit var academy: Academy
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_academy_detail)
+
         if (intent != null && intent.hasExtra(EXTRA_ACADEMY)) {
             academy = intent.getParcelableExtra(EXTRA_ACADEMY)
         }
-        text_view.text = academy.name
+        courseName.text = academy.name
+        courseDescription.text = academy.desc
+        courcePoint.text = getString(R.string.text_point, academy.price.toString())
+        courseAuthor.text = getString(R.string.text_author , academy.author)
+        courseBadge.setImageResource(academy.image ?: 0)
     }
 }
